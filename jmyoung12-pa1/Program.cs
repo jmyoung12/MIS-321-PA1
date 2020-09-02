@@ -22,7 +22,7 @@ namespace jmyoung12_pa1
                 Console.ReadLine();
             }
 
-            else if (menuDecision == 2) 
+            else if (menuDecision == 2)
             {
                 Console.WriteLine("What would you like the post to say?");
                 string data = Console.ReadLine();
@@ -49,7 +49,7 @@ namespace jmyoung12_pa1
                 Console.ReadLine();
             }
 
-            else if (menuDecision == 3) 
+            else if (menuDecision == 3)
             {
                 var posts = ReadPosts();
 
@@ -67,12 +67,15 @@ namespace jmyoung12_pa1
                 Console.ReadLine();
             }
 
-            else if (menuDecision == 4) 
+            else if (menuDecision == 4)
             {
                 Environment.Exit(0);
             }
         }
 
+        /*
+         * Displays the list of posts
+         */
         static void DisplayPosts(List<Post> posts)
         {
             posts.Sort(delegate (Post x, Post y)
@@ -89,6 +92,9 @@ namespace jmyoung12_pa1
             }
         }
 
+        /*
+        * Gets the menu decision from user
+        */
         static int GetMenuDecision()
         {
             Console.WriteLine("\nWelcome to Big Al's Social Media Application!\n");
@@ -97,7 +103,7 @@ namespace jmyoung12_pa1
             Console.WriteLine("3) Delete a Post");
             Console.WriteLine("4) Exit");
             int dec = int.Parse(Console.ReadLine());
-            while(dec <= 0 || dec >= 5)
+            while (dec <= 0 || dec >= 5)
             {
                 Console.WriteLine("Error! Enter a proper response");
                 Console.WriteLine("1) See All Posts");
@@ -109,11 +115,14 @@ namespace jmyoung12_pa1
             return dec;
         }
 
+        /*
+        * Reads posts from list and sorts them before adding them to a list
+        */
         static List<Post> ReadPosts()
         {
             var posts = new List<Post>();
 
-            try          
+            try
             {
                 using (StreamReader sr = new StreamReader("posts.txt"))
                 {
@@ -149,6 +158,9 @@ namespace jmyoung12_pa1
             return posts;
         }
 
+        /*
+        * Creates a post and adds it to the list
+        */
         static Post CreatePost(int id, string data)
         {
             Post newPost = new Post();
@@ -160,6 +172,9 @@ namespace jmyoung12_pa1
             return newPost;
         }
 
+        /*
+        * Saves the list to a txt file
+        */
         static void SavePosts(List<Post> posts)
         {
             if (File.Exists("posts.txt"))
